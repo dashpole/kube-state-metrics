@@ -104,4 +104,4 @@ require (
 
 replace github.com/prometheus/client_golang v1.16.0 => github.com/dashpole/client_golang v0.0.0-20230725192949-c6afe69108a4
 
-replace go.opentelemetry.io/otel/bridge/prometheus v0.0.0-0-0 => github.com/dashpole/opentelemetry-go/bridge/prometheus v0.0.0-20230724155154-2ac5b7ee39ac
+replace go.opentelemetry.io/otel/bridge/prometheus v0.0.0-0-0 => github.com/dashpole/opentelemetry-go/bridge/prometheus v0.0.0-20230725203754-c52809278bd7

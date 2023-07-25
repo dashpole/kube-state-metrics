@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: otel-collector-config
+  namespace: kube-system
+data:
+  otel-collector-config: |
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+    processors:
+      resourcedetection:
+        detectors: [gcp]
+        timeout: 10s
+    exporters:
+      googlemanagedprometheus:
+      logging:
+        verbosity: detailed
+    service:
+      pipelines:
+        metrics:
+          receivers: [otlp]
+          processors: [resourcedetection]
+          exporters: [googlemanagedprometheus, logging]
