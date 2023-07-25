@@ -9,7 +9,7 @@ require (
 	github.com/google/go-cmp v0.5.9
 	github.com/oklog/run v1.1.0
 	github.com/prometheus/client_golang v1.16.0
-	github.com/prometheus/client_model v0.4.0
+	github.com/prometheus/client_model v0.4.1-0.20230719122841-95a0733b38a0
 	github.com/prometheus/common v0.44.0
 	github.com/prometheus/exporter-toolkit v0.10.0
 	github.com/robfig/cron/v3 v3.0.1
@@ -86,3 +86,5 @@ require (
 	sigs.k8s.io/structured-merge-diff/v4 v4.2.3 // indirect
 	sigs.k8s.io/yaml v1.3.0 // indirect
 )
+
+replace github.com/prometheus/client_golang v1.16.0 => github.com/dashpole/client_golang v0.0.0-20230725170921-04d9d991970e
