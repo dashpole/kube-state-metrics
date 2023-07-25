@@ -37,6 +37,10 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/prometheus/common/version"
 	"github.com/prometheus/exporter-toolkit/web"
+	prombridge "go.opentelemetry.io/otel/bridge/prometheus"
+	"go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc"
+	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc"
+	"go.opentelemetry.io/otel/sdk/metric"
 	"gopkg.in/yaml.v3"
 	_ "k8s.io/client-go/plugin/pkg/client/auth" // Initialize common client auth plugins.
 	"k8s.io/client-go/tools/clientcmd"
@@ -89,6 +93,13 @@ func RunKubeStateMetricsWrapper(ctx context.Context, opts *options.Options) erro
 func RunKubeStateMetrics(ctx context.Context, opts *options.Options) error {
 	promLogger := promLogger{}
 	ksmMetricsRegistry := prometheus.NewRegistry()
+	exporter, err := otlpmetricgrpc.New(ctx, otlptracegrpc.WithInsecure())
+	if err != nil {
+		return err
+	}
+	reader := metric.NewPeriodicReader(exporter)
+	reader.RegisterProducer(prombridge.NewMetricProducer(prombridge.WithGatherer(ksmMetricsRegistry)))
+	metric.NewMeterProvider(metric.WithReader(reader))
 	ksmMetricsRegistry.MustRegister(version.NewCollector("kube_state_metrics"))
 	durationVec := promauto.With(ksmMetricsRegistry).NewHistogramVec(
 		prometheus.HistogramOpts{
