@@ -39,7 +39,6 @@ import (
 	"github.com/prometheus/exporter-toolkit/web"
 	prombridge "go.opentelemetry.io/otel/bridge/prometheus"
 	"go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc"
-	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc"
 	"go.opentelemetry.io/otel/sdk/metric"
 	"gopkg.in/yaml.v3"
 	_ "k8s.io/client-go/plugin/pkg/client/auth" // Initialize common client auth plugins.
@@ -93,7 +92,7 @@ func RunKubeStateMetricsWrapper(ctx context.Context, opts *options.Options) erro
 func RunKubeStateMetrics(ctx context.Context, opts *options.Options) error {
 	promLogger := promLogger{}
 	ksmMetricsRegistry := prometheus.NewRegistry()
-	exporter, err := otlpmetricgrpc.New(ctx, otlptracegrpc.WithInsecure())
+	exporter, err := otlpmetricgrpc.New(ctx, otlpmetricgrpc.WithInsecure())
 	if err != nil {
 		return err
 	}

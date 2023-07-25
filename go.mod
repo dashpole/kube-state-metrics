@@ -18,7 +18,6 @@ require (
 	github.com/stretchr/testify v1.8.4
 	go.opentelemetry.io/otel/bridge/prometheus v0.0.0-0-0
 	go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc v0.39.0
-	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc v1.10.0
 	go.opentelemetry.io/otel/sdk/metric v0.39.0
 	gopkg.in/yaml.v3 v3.0.1
 	k8s.io/api v0.27.3
@@ -78,7 +77,6 @@ require (
 	go.opentelemetry.io/otel v1.16.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/internal/retry v1.16.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/otlpmetric v0.39.0 // indirect
-	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.10.0 // indirect
 	go.opentelemetry.io/otel/metric v1.16.0 // indirect
 	go.opentelemetry.io/otel/sdk v1.16.0 // indirect
 	go.opentelemetry.io/otel/trace v1.16.0 // indirect
@@ -104,6 +102,6 @@ require (
 	sigs.k8s.io/yaml v1.3.0 // indirect
 )
 
-replace github.com/prometheus/client_golang v1.16.0 => github.com/dashpole/client_golang v0.0.0-20230725170921-04d9d991970e
+replace github.com/prometheus/client_golang v1.16.0 => github.com/dashpole/client_golang v0.0.0-20230725192949-c6afe69108a4
 
 replace go.opentelemetry.io/otel/bridge/prometheus v0.0.0-0-0 => github.com/dashpole/opentelemetry-go/bridge/prometheus v0.0.0-20230724155154-2ac5b7ee39ac
